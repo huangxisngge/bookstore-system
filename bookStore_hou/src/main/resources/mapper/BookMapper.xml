@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bookstore.mapper.BookMapper">
+
+    <!-- 联表查询公共列：book 关联 category，靠 ID 主键关联，直接映射到 BookVO -->
+    <sql id="bookVOResult">
+        SELECT
+            b.id,
+            b.title,
+            b.author,
+            b.isbn,
+            b.publisher,
+            b.category_id   AS categoryId,
+            c.name          AS categoryName,
+            b.price,
+            b.discount,
+            b.promo_price   AS promoPrice,
+            b.promo_start_time AS promoStartTime,
+            b.promo_end_time   AS promoEndTime,
+            b.grab_start_time  AS grabStartTime,
+            b.stock,
+            b.sales,
+            b.cover_image   AS coverImage,
+            b.description,
+            b.status
+        FROM book b
+        LEFT JOIN category c ON b.category_id = c.id AND c.deleted = 0
+    </sql>
+
+    <select id="selectBookVOPage" resultType="com.bookstore.vo.BookVO">
+        <include refid="bookVOResult"/>
+        WHERE b.deleted = 0
+        <if test="categoryId != null">
+            AND b.category_id = #{categoryId}
+        </if>
+        <if test="keyword != null and keyword != ''">
+            AND (b.title LIKE CONCAT('%', #{keyword}, '%')
+                 OR b.author LIKE CONCAT('%', #{keyword}, '%')
+                 OR b.isbn LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="status != null">
+            AND b.status = #{status}
+        </if>
+        <choose>
+            <when test="sort == 'price_asc'">
+                ORDER BY (CASE WHEN b.promo_start_time IS NOT NULL AND NOW() BETWEEN b.promo_start_time AND b.promo_end_time THEN b.promo_price ELSE b.price * b.discount END) ASC, b.id DESC
+            </when>
+            <when test="sort == 'price_desc'">
+                ORDER BY (CASE WHEN b.promo_start_time IS NOT NULL AND NOW() BETWEEN b.promo_start_time AND b.promo_end_time THEN b.promo_price ELSE b.price * b.discount END) DESC, b.id DESC
+            </when>
+            <otherwise>
+                ORDER BY b.sales DESC, b.id DESC
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="selectBookVOById" resultType="com.bookstore.vo.BookVO">
+        <include refid="bookVOResult"/>
+        WHERE b.deleted = 0 AND b.id = #{id}
+    </select>
+
+    <select id="selectHotBookVOs" resultType="com.bookstore.vo.BookVO">
+        <include refid="bookVOResult"/>
+        WHERE b.deleted = 0 AND b.status = 1
+        ORDER BY b.sales DESC, b.id DESC
+        LIMIT #{limit}
+    </select>
+
+    <!-- 即将开抢：开抢时间在未来，倒计时展示（配合畅销榜形成"新书开抢→销量累积"闭环） -->
+    <select id="selectUpcomingGrabVOs" resultType="com.bookstore.vo.BookVO">
+        <include refid="bookVOResult"/>
+        WHERE b.deleted = 0 AND b.status = 1 AND b.grab_start_time > NOW()
+        ORDER BY b.grab_start_time ASC
+        LIMIT #{limit}
+    </select>
+
+</mapper>

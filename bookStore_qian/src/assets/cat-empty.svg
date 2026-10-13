@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 160">
+  <rect x="42" y="118" width="120" height="15" rx="4.5" fill="#e88f3e"/>
+  <rect x="150" y="121" width="8" height="9" rx="1.5" fill="#fff5e6"/>
+  <rect x="50" y="103" width="104" height="15" rx="4.5" fill="#a9714b"/>
+  <rect x="146" y="106" width="7" height="9" rx="1.5" fill="#fff5e6"/>
+  <rect x="57" y="88" width="90" height="15" rx="4.5" fill="#f5d6a8"/>
+  <rect x="139" y="91" width="6" height="9" rx="1.5" fill="#a9714b"/>
+
+  <path d="M146 78 q14 16 -6 24 q-24 9 -44 -1" stroke="#f0a35f" stroke-width="11" fill="none" stroke-linecap="round"/>
+  <ellipse cx="106" cy="62" rx="45" ry="26" fill="#f9b97a"/>
+  <path d="M96 41 q2 5 0 9 M112 40 q2 5 0 9 M128 43 q1.5 4.5 0 8" stroke="#e88f3e" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <circle cx="70" cy="58" r="19" fill="#fbbf74"/>
+  <path d="M56 46 L52 32 L66 39 Z" fill="#f5a25d"/>
+  <path d="M84 46 L88 32 L74 39 Z" fill="#f5a25d"/>
+  <path d="M58 43 L56 36 L63 39.5 Z" fill="#ffb8c9"/>
+  <path d="M82 43 L84 36 L77 39.5 Z" fill="#ffb8c9"/>
+  <path d="M61 60 q3.2 3.2 6.4 0 M75.6 60 q3.2 3.2 6.4 0" stroke="#4a2c1a" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M69 65.5 h3 l-1.5 2 Z" fill="#e2705c"/>
+  <circle cx="59" cy="64" r="2.4" fill="#ffb8c9" opacity="0.6"/>
+  <circle cx="81" cy="64" r="2.4" fill="#ffb8c9" opacity="0.6"/>
+  <path d="M50 62 h5.5 M51 66 l5 -1 M90 62 h-5.5 M89 66 l-5 -1" stroke="#4a2c1a" stroke-width="1.1" stroke-linecap="round"/>
+
+  <text x="152" y="46" font-family="Comic Sans MS, cursive" font-size="17" fill="#d99a55" font-weight="bold" transform="rotate(-12 152 46)">z</text>
+  <text x="166" y="33" font-family="Comic Sans MS, cursive" font-size="13" fill="#e0ac6b" font-weight="bold" transform="rotate(10 166 33)">z</text>
+  <text x="177" y="23" font-family="Comic Sans MS, cursive" font-size="10" fill="#e8bd85" transform="rotate(-8 177 23)">z</text>
+
+  <g fill="#c98a4b" opacity="0.28">
+    <ellipse cx="26" cy="30" rx="6" ry="4.6"/>
+    <circle cx="18.5" cy="22.5" r="2.4"/><circle cx="24" cy="20" r="2.4"/>
+    <circle cx="29.5" cy="21" r="2.4"/><circle cx="34" cy="25" r="2.4"/>
+    <ellipse cx="196" cy="112" rx="6" ry="4.6"/>
+    <circle cx="188.5" cy="104.5" r="2.4"/><circle cx="194" cy="102" r="2.4"/>
+    <circle cx="199.5" cy="103" r="2.4"/><circle cx="204" cy="107" r="2.4"/>
+  </g>
+</svg>

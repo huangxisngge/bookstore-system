@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    username: root
+    password: 你的数据库密码
+
+jwt:
+  secret: 你的JWT密钥(至少256位)
